@@ -1,10 +1,11 @@
 import networkx as nx
 import copy
 import random
+import time
 
 
-Graph = nx.complete_multipartite_graph(2,3,4) #задание графа - генератор
-
+Graph = nx.complete_multipartite_graph(30, 28, 29) #задание графа - генератор
+all_time = 0
 all_edges = list(nx.generate_edgelist(Graph, data = False))
 edges = []
 for edge in all_edges:
@@ -14,6 +15,7 @@ for edge in all_edges:
 nodes = list(Graph.nodes)
 nx.draw(Graph,with_labels=True)
 
+start_time = time.time()
 
 def contract(nodes, edges): #алгоритм
   while len(nodes) > 2:
@@ -30,8 +32,14 @@ def contract(nodes, edges): #алгоритм
         edge.append(edges[i])
     edges = edge
   return nodes, edges
-finalNodes, finalEdges = contract(nodes,edges)
 
+
+for i in range(10):
+    finalNodes, finalEdges = contract(nodes,edges)
+    all_time += time.time() - start_time
+
+
+print("Время работы: ", all_time/10) #ищем среднее время работы
 
 print('Итоговые ребра:', finalEdges)
 print('Итоговые вершины:', finalNodes)
