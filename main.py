@@ -34,12 +34,12 @@ def contract(nodes, edges): #алгоритм
   return nodes, edges
 
 
-for i in range(10):
+for i in range(15):
     finalNodes, finalEdges = contract(nodes,edges)
     all_time += time.time() - start_time
 
 
-print("Время работы: ", all_time/10) #ищем среднее время работы
+print("Время работы: ", all_time/15) #ищем среднее время работы
 
 print('Итоговые ребра:', finalEdges)
 print('Итоговые вершины:', finalNodes)
